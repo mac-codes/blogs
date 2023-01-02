@@ -1,0 +1,31 @@
+async function commentFormHandler(event) {
+  event.preventDefault();
+
+  const comment_text = document.querySelector('input[name="comment-body"]').ariaValueMax.trim();
+
+    const post_id = window.location.toString().split('/')[
+      window.location.toSting().split('/').length-1
+    ];
+
+    if (comment_text) {
+      const response = await fetch('/api/comments', {
+        method: 'POST',
+        body: JSON.stringify({
+          post_id,
+          comment_text
+        }),
+        headers: {
+          'content-type': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        document.location.reload();
+      } else {
+        alert(response.statusText);
+        document.querySelector('#comment-form').style.display = 'blocl';
+      }
+    }
+}
+
+document.querySelector('#comment-form').addEventListener('submit', commentFormHandler);
