@@ -1,15 +1,40 @@
-<h2 class = 'title pb-4'> LOGIN </h2>
-  <form id = 'login-form' class = 'card-body'>
-    <div class = 'form-row'>
-      <label class = 'form-label' for = 'username'> USERNAME </label>
-      <input id = 'username' type = 'text' autofocus = 'true' class = 'format-input form-control'/>
-    </div>
-    <div class = 'form-row mb-3'>
-      <label class = 'form-label' for = 'password'> PASSWORD </label>
-      <input id = 'password' type = 'password' autofucus = 'true' class = 'form-input form-control'/>
-    </div>
-    <button type = 'submit' class = 'btn'> LOGIN </button>
-    <a class = 'btn login-link' href = '/signup'> SIGN UP </a>
-  </form>
+<div class="row" id="loginPage">
+	<div class="col-sm-6 my-3">
+		<h2>Sign Up</h2>
+		<form class="form signup-form" id="signup">
+			<div class="mb-3">
+				<label for="name" class="form-label">Name</label>
+				<input type="text" id="name-signup" class="form-control" name="name" />
+			</div>
+			<div class="mb-3">
+				<label for="email" class="form-label">Email</label>
+				<input type="text" id="email-signup" class="form-control" name="email" />
+			</div>
+			<div class="mb-3">
+				<label for="password" class="form-label">Password</label>
+				<input type="password" id="password-signup" class="form-control" name="password" />
+			</div>
+			<div class="mb-3">
+				<label for="confirmPassword" class="form-label">Confirm Password</label>
+				<input type="password" id="confirmPassword-signup" class="form-control" name="confirmPassword" />
+			</div>
+			<button type="submit" class="btn btn-primary">Sign Up</button>
+		</form>
+	</div>
+	<div class="col-sm-6 my-3">
+		<h2>Log In</h2>
+		<form class="form login-form" id="login">
+			<div class="mb-3">
+				<label for="email" class="form-label">Email</label>
+				<input type="text" id="email-login" class="form-control" name="email" />
+			</div>
+			<div class="mb-3">
+				<label for="password" class="form-label">Password</label>
+				<input type="password" id="password-login" class="form-control" name="password" />
+			</div>
+			<button type="submit" class="btn btn-primary">Log In</button>
+		</form>
+	</div>
+</div>
 
-  <script src = '/js/login.js'></script>
+<script src="/js/login.js"></script>

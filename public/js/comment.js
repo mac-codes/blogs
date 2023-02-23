@@ -1,31 +1,32 @@
-async function commentFormHandler(event) {
+const commentForm = document.getElementById('comment');
+
+commentForm.addEventListener('submit', async (event) => {
   event.preventDefault();
 
-  const comment_text = document.querySelector('input[name="comment-body"]').ariaValueMax.trim();
+  // Extract input values from the form
+  const content = event.target.elements.content.value;
+  const blogId = event.target.dataset.blogid;
 
-    const post_id = window.location.toString().split('/')[
-      window.location.toSting().split('/').length-1
-    ];
+  // Create comment object
+  const commentData = { content, blog_id: blogId };
 
-    if (comment_text) {
-      const response = await fetch('/api/comments', {
-        method: 'POST',
-        body: JSON.stringify({
-          post_id,
-          comment_text
-        }),
-        headers: {
-          'content-type': 'application/json'
-        }
-      });
+  try {
+    // Send POST request to server with comment data
+    const response = await fetch('/api/comments', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(commentData)
+    });
 
-      if (response.ok) {
-        document.location.reload();
-      } else {
-        alert(response.statusText);
-        document.querySelector('#comment-form').style.display = 'blocl';
-      }
+    // If response is successful, redirect to the blog page
+    if (response.ok) {
+      window.location.href = `/blog/${blogId}`;
+    } else {
+      console.log('Error:', response.status);
     }
-}
-
-document.querySelector('#comment-form').addEventListener('submit', commentFormHandler);
+  } catch (error) {
+    console.log(error);
+  }
+});
